@@ -1,40 +1,33 @@
-# 🎓 Capgemini Data Engineering Training
+# Capgemini Data Engineering Training
 
-This repository serves as the central documentation for my **Data Engineering Training Program** at Capgemini. It follows a strictly structured approach to mastering the modern data stack using **Databricks**, **PySpark**, and **Spark SQL**.
+## Phases Overview
 
----
+### Phase 0: Introduction
+- Overview of Data Engineering and its importance in the industry.
+- Tools and technologies used in the training.
 
-## 📂 Repository Structure
+### Phase 1: Data Ingestion
+- Techniques for ingesting data from various sources into data storage solutions.
+- Practical sessions on using tools like Apache Kafka and AWS S3.
 
-Each folder follows the mandatory Capgemini Review Standard, including a problem statement, solution code, and verified outputs.
+### Phase 2: Data Storage
+- Understanding various data storage technologies: SQL vs NoSQL.
+- Hands-on experience with databases such as PostgreSQL and MongoDB.
 
-### 🗓️ Week 0: Foundation
-* **[Phase 1](Week0/Phase1/)**: Data Exploration (Filtering & Selection)
-* **[Phase 2](Week0/Phase2/)**: Transformation (Joins & Aggregations)
-* **Phase 3 & 3A**: Pipeline Automation & Cleaning
-* **Phase 4, 4A, 5 & 6**: Advanced SQL & Optimization
+### Phase 3: Data Processing
+- Learning about data processing pipelines.
+- Use of Apache Spark and ETL concepts.
 
-### 🗓️ Week 1: Case Studies & Industry Applications
-* **Day 1**: Advanced Spark Concepts
-* **Day 2 - Day 5**: BFSI & Olist E-commerce Projects
+### Phase 4: Data Visualization
+- Importance of data visualization in data-driven decision making.
+- Tools like Tableau and Power BI were explored during this phase.
 
----
+### Phase 4A: Deployment
+- Implementing data solutions in real-time environments.
+- Experience with Docker and Kubernetes for deployment.
 
-## 📌 Project Standards (Review Checklist)
-To ensure compliance with Capgemini's review process, every sub-folder contains:
-1.  **README.md**: Problem summary, approach taken, and key learnings.
-2.  **Code File**: `.py` script or Databricks Notebook.
-3.  **SQL File**: Queries used for data validation.
-4.  **Problem Statement**: Official PDF description.
-5.  **outputs/**: Screenshots of successful execution and result sets.
+### Phase 5: In Progress
+- Ongoing learnings and projects that are being worked on currently.
 
----
-
-## 🛠️ Technical Stack
-- **Engine:** Apache Spark 3.x
-- **Environment:** Databricks (Runtime 10.4 LTS+)
-- **Languages:** Python (PySpark), Spark SQL
-- **Architecture:** Medallion Architecture (Bronze, Silver, Gold)
-
----
-*Maintained by [viveksadhucodes](https://github.com/viveksadhucodes)*
+## Summary
+All phases from Phase 0 through Phase 4A have been completed, while Phase 5 is currently in progress and focuses on real-world applications and further skill enhancement.
