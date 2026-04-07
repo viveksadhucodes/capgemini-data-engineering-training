@@ -101,4 +101,44 @@ FROM employees e
 LEFT JOIN departments d
 ON e.dept_id=d.dept_id ;
 
+-- 11. Find the names of all departments and employees, ensuring that departments with no employees are included.
+SELECT d.dept_name,e.emp_name 
+FROM departments d
+LEFT JOIN employees e
+ON e.dept_id=d.dept_id ;
+
+-- 12. List all employees with their contact information, including employees without contact records.
+
+
+-- 13. Show the names of employees and their department names, including employees not assignedto any department and departments without employees.
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+
+UNION
+
+SELECT e.emp_name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;
+
+-- 14. Find employees who have not completed any project, along with the project details where applicable
+-- 14. List names of employees and projects, including those with no assignments on either side.
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p ON e.emp_id = p.emp_id
+
+UNION
+
+SELECT e.emp_name, p.project_name
+FROM employees e
+RIGHT JOIN projects p ON e.emp_id = p.emp_id;
+
+-- 15. Retrieve the names of employees and the names of their projects, including employees who are not working on any project.
+
+-- 15. Retrieve the names of employees and their project names, 
+-- including employees who are not working on any project.
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p ON e.emp_id = p.emp_id;
+
 
