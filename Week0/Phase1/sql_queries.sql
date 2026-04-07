@@ -1,3 +1,4 @@
+
 CREATE TABLE customers (
     customer_id   INT,
     customer_name VARCHAR(50),
