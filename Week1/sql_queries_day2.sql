@@ -90,4 +90,34 @@ SELECT SUM(salary) as total_salary ,department
 FROM Employee
 GROUP BY department
 HAVING total_salary < 150000 ;
+    
+    -- 11. Find the total number of employees grouped by department, but only include departments with more than 1 employee.
+SELECT COUNT(emp_id) as total_emp , department
+FROM Employee
+GROUP BY department
+HAVING total_emp > 1 ;
 
+-- 12. Calculate the total salary of each department and show only those where the total exceeds 125,000
+SELECT SUM(salary) as total_salary , department
+FROM Employee
+GROUP BY department
+HAVING total_salary > 125000 ;
+
+-- 13. Count the number of employees in each department, but include only departments with more than 2 employees.
+SELECT COUNT(emp_id) as total_emp , department
+FROM Employee
+GROUP BY department
+HAVING total_emp > 2 ;
+
+-- 14. Find the average salary in each department where the average salary is above 60,000.
+
+SELECT AVG(salary) as avg_salary , department
+FROM Employee
+GROUP BY department
+HAVING avg_salary > 60000 ;
+
+-- 15. Show departments where the sum of salaries is between 100,000 and 200,000.
+SELECT SUM(salary) as total_salary , department
+FROM Employee
+GROUP BY department
+HAVING total_salary BETWEEN 100000 AND 200000 ;
