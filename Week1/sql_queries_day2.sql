@@ -121,3 +121,34 @@ SELECT SUM(salary) as total_salary , department
 FROM Employee
 GROUP BY department
 HAVING total_salary BETWEEN 100000 AND 200000 ;
+
+-- 16. Find the total sales amount for each employee.
+SELECT Employee.emp_name, SUM(Sales.amount) as total_sales
+FROM Sales
+LEFT JOIN Employee ON Employee.emp_id = Sales.emp_id
+GROUP BY Employee.emp_name;
+
+-- 17. List the number of sales made by each employee.
+SELECT Employee.emp_name, COUNT(Sales.sales_id) as los
+FROM Sales
+LEFT JOIN Employee ON Employee.emp_id = Sales.emp_id
+GROUP BY Employee.emp_name;
+
+-- 18. Find the total sales amount grouped by product.
+SELECT Sales.product ,SUM(Sales.amount) as total_sales
+FROM Sales
+LEFT JOIN Employee ON Employee.emp_id = Sales.emp_id
+GROUP BY Sales.product ;
+
+-- 19. Calculate the average sales amount grouped by product.
+SELECT Sales.product ,AVG(Sales.amount) as total_sales
+FROM Sales
+LEFT JOIN Employee ON Employee.emp_id = Sales.emp_id
+GROUP BY Sales.product ;
+
+-- 20. Find employees who have made more than 2 sales, grouped by their names.
+SELECT Employee.emp_name,Count(Sales.sales_id) as sc
+FROM Sales
+LEFT JOIN Employee on Employee.emp_id=Sales.emp_id
+GROUP BY Employee.emp_name
+HAVING sc >= 2;
