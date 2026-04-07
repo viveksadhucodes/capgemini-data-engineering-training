@@ -186,3 +186,40 @@ GROUP BY Employee.department
 ORDER BY avg_amt DESC
 LIMIT 1;
 
+-- 26. Find the department with the highest total sales amount.
+
+SELECT SUM(Sales.amount) as avg_amt, Employee.department 
+FROM Sales 
+LEFT JOIN Employee on Employee.emp_id = Sales.emp_id 
+GROUP BY Employee.department
+ORDER BY avg_amt DESC
+LIMIT 1;
+
+-- 27. Show the top 3 employees with the highest total sales amount, grouped by employee names.
+SELECT SUM(Sales.amount) as sum_amt, Employee.emp_name
+FROM Sales 
+LEFT JOIN Employee 
+on Employee.emp_id = Sales.emp_id 
+GROUP BY Employee.emp_name
+ORDER BY sum_amt DESC
+LIMIT 3;
+
+-- 28. Calculate the total number of employees and the average salary, grouped by the year of joining.
+SELECT COUNT(emp_id) as emp_count,AVG(Salary)  AS avg_sal
+FROM Employee
+GROUP BY joining_date ;
+
+-- 29. Find the total sales amount for each department (using a join between Employee and Sales).
+SELECT SUM(Sales.amount) as total_sales , Employee.department  
+FROM Sales
+LEFT JOIN Employee
+ON Employee.emp_id=Sales.sales_id
+GROUP BY Employee.department ;
+
+-- 30. Show employees who have not made any sales, grouped by their department
+SELECT Employee.emp_name, Employee.department, COUNT(Sales.sales_id) as sc
+FROM Employee
+LEFT JOIN Sales ON Employee.emp_id = Sales.emp_id
+GROUP BY Employee.department, Employee.emp_name
+HAVING sc = 0;
+
