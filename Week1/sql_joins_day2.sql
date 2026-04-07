@@ -80,3 +80,25 @@ FROM employees e
 LEFT JOIN projects p
 ON e.emp_id=p.emp_id ; 
 
+-- 7. List all employees who have completed at least one project, showing their names and the project names.
+SELECT e.emp_name,p.project_name
+FROM employees e
+ JOIN projects p
+on e.emp_id=p.emp_id ;
+
+-- 8. Show the names of employees and their projects, ensuring that no project is omitted even if an employee is not assigned to it.
+ SELECT e.emp_name,p.project_name 
+ FROM projects p
+ LEFT JOIN employees e
+ ON e.emp_id=p.emp_id ;
+ 
+ -- 9. Find all employees and their corresponding salaries, and display NULL for salary if there is no salary record for the employee.
+
+
+-- 10. Retrieve the names of employees and their corresponding department names, including employees who are not in any department.
+SELECT e.emp_name,d.dept_name
+FROM employees e
+LEFT JOIN departments d
+ON e.dept_id=d.dept_id ;
+
+
