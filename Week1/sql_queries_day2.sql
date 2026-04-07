@@ -152,3 +152,37 @@ FROM Sales
 LEFT JOIN Employee on Employee.emp_id=Sales.emp_id
 GROUP BY Employee.emp_name
 HAVING sc >= 2;
+
+-- 21. Calculate the total salary and total sales amount for each employee.
+SELECT SUM(Employee.salary) as total_salary,SUM(Sales.amount) as total_sales
+FROM Sales
+LEFT JOIN Employee
+on Employee.emp_id=Sales.sales_id ;
+
+-- 22. Count the number of unique products sold by each employee.
+SELECT Employee.emp_name, COUNT(DISTINCT Sales.product) as unique_product_count
+FROM Sales
+LEFT JOIN Employee ON Employee.emp_id = Sales.emp_id
+GROUP BY Employee.emp_name;
+
+-- 23. Find the highest sales amount made by each employee.
+SELECT Employee.emp_NAME,MAX(Sales.amount) as maxi
+FROM Sales
+LEFT JOIN Employee
+on Employee.emp_id=Sales.emp_id
+GROUP BY Employee.emp_id ;
+
+-- 24. Calculate the total sales amount grouped by product and filtered by products where the total exceeds 50,000.
+SELECT SUM(amount) as total_sales , product
+FROM Sales
+GROUP BY product
+HAVING total_sales > 50000 ;
+
+-- 25. Find the departments with the highest average sales amount.
+SELECT AVG(Sales.amount) as avg_amt, Employee.department 
+FROM Sales 
+LEFT JOIN Employee on Employee.emp_id = Sales.emp_id 
+GROUP BY Employee.department
+ORDER BY avg_amt DESC
+LIMIT 1;
+
