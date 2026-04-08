@@ -75,3 +75,43 @@ RANK() OVER(ORDER BY emp_name) as names
 FROM employees ;
 
 -- 16.	Rank orders within each city based on order date. 
+
+
+-- 17.	Assign dense rank to employees based on salary (highest first). 
+SELECT *,
+DENSE_RANK() OVER(ORDER BY salary) as ranked_dense
+FROM employees ;
+
+-- 18.	Assign dense rank within each department based on salary. 
+SELECT *,
+DENSE_RANK() OVER(PARTITION BY department ORDER BY salary) as dept_wise_salary_rank 
+FROM employees ;
+
+
+-- 19.	Assign dense rank to employees based on joining date. 
+SELECT *,
+DENSE_RANK() OVER(ORDER BY join_date) as rank_based_on_join_date
+FROM employees ;
+
+-- 20.	Assign dense rank to orders based on order amount. 
+SELECT *,
+DENSE_RANK() OVER(ORDER BY salary) as amt
+FROM employees ;
+
+-- 21.	Assign dense rank within each city based on order amount. 
+SELECT *,
+DENSE_RANK() OVER(PARTITION BY department ORDER BY salary ) as city_amt
+FROM employees ; 
+
+-- 22.	Assign dense rank to employees based on salary (lowest first). 
+SELECT * ,
+DENSE_RANK() OVER(ORDER BY salary DESC) as salary_based 
+FROM employees ;
+
+-- 23.	Assign dense rank within department based on joining date
+SELECT *,
+DENSE_RANK() OVER(PARTITION BY department ORDER BY join_date) as dept_wise_join_date
+FROM employees ;
+
+-- 24.	Assign dense rank to orders based on order date.
+
