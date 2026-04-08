@@ -1,3 +1,5 @@
+--ROW_NUMBER() 
+
 -- 1.	Assign a unique row number to all employees based on salary (highest first). 
 SELECT 
     *, 
@@ -36,3 +38,4 @@ FROM employees;
 -- 8.	Assign row numbers within department for employees based on name alphabetically. 
 SELECT *,ROW_NUMBER() OVER(PARTITION BY department ORDER BY emp_name ASC ) AS dept_wise_names_order
 FROM employees ;
+
