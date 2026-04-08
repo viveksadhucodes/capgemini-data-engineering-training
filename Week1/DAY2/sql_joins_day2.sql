@@ -211,3 +211,33 @@ FROM departments d
 LEFT JOIN employees e
 on d.dept_id=e.dept_id
 GROUP BY d.dept_name ;
+
+-- 26. List all employees and the departments they belong to, ensuring that departments with no employees are also listed.
+SELECT e.emp_name,d.dept_name
+FROM departments d
+LEFT JOIN employees e
+on d.dept_id=e.dept_id ;
+
+-- 28. Retrieve the names of employees and their project assignments, including employees who are not assigned to any projects.
+
+SELECT e.emp_name, p.project_name
+FROM employees e
+LEFT JOIN projects p ON e.emp_id = p.emp_id;
+
+-- 29. List the names of all employees and their respective department and project assignments,including employees who are not assigned to a project or department.
+SELECT 
+    e.emp_name, 
+    d.dept_name, 
+    p.project_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+LEFT JOIN projects p ON e.emp_id = p.emp_id;
+
+
+-- 30. Display the names of employees who belong to at least one department, with the department name listed, but include employees without a department as well
+
+SELECT 
+    e.emp_name, 
+    d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
