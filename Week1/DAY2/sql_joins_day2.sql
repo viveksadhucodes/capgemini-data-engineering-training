@@ -172,8 +172,10 @@ GROUP BY e.emp_name
 HAVING COUNT(DISTINCT e.dept_id) > 1;
 
 -- 20. List the names of all departments and employees, ensuring that even if a department has noemployees, it is included in the result.
-SELECT d.dept_name,e.emp_name 
+SELECT 
+    d.dept_name, 
+    COALESCE(e.emp_name, 'No Employees Assigned') AS employee_name
 FROM departments d
-LEFT JOIN employees e
-ON d.dept_id=e.dept_id ;
+LEFT JOIN employees e ON d.dept_id = e.dept_id;
+
 
