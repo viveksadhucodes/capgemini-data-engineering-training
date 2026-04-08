@@ -133,8 +133,6 @@ SELECT e.emp_name, p.project_name
 FROM employees e
 RIGHT JOIN projects p ON e.emp_id = p.emp_id;
 
--- 15. Retrieve the names of employees and the names of their projects, including employees who are not working on any project.
-
 -- 15. Retrieve the names of employees and their project names, 
 -- including employees who are not working on any project.
 SELECT e.emp_name, p.project_name
