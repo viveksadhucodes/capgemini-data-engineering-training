@@ -140,3 +140,26 @@ FROM employees e
 LEFT JOIN projects p ON e.emp_id = p.emp_id;
 
 
+-- 16. List all projects and the employees assigned to them, even for projects that have no employees.
+SELECT p.project_name,e.emp_name
+FROM projects p
+LEFT JOIN employees e
+ON e.emp_id=p.emp_id ;
+
+
+-- 17. Show the names of all employees who have both a manager and at least one project, listing the manager's name as well.
+SELECT 
+    e.emp_name AS Employee, 
+    m.emp_name AS Manager,
+    p.project_name
+FROM employees e
+JOIN employees m ON e.manager_id = m.emp_id
+JOIN projects p ON e.emp_id = p.emp_id;
+
+-- 18. List the names of employees and the corresponding department names, but exclude those employees who don't belong to a department.
+ SELECT e.emp_name,d.dept_name
+ FROM employees e
+ JOIN departments d
+ ON e.dept_id=d.dept_id ;
+ 
+ -- 19. Display employees who belong to multiple departments, showing the employee's name and the department names.
