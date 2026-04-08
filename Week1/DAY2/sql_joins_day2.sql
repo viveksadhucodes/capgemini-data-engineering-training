@@ -179,3 +179,35 @@ FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id;
 
 
+-- 21. Retrieve employees who have worked on at least one project and do not belong to a department, listing their name and project details.
+SELECT e.emp_name,p.project_name
+FROM employees e
+JOIN projects p
+ON e.emp_id=p.emp_id 
+WHERE e.dept_id IS NULL ;
+
+-- 22. Find the total number of employees who belong to a department, ensuring the departments with no employees are still included.
+SELECT d.dept_name,COUNT(e.emp_id) as total_employees
+FROM departments d
+LEFT JOIN employees e
+ON e.dept_id=d.dept_id
+GROUP BY d.dept_name ;
+
+
+-- 23. Show the employees and their managers, displaying only those employees who report to a manager, excluding employees without managers
+SELECT e.emp_name as employee,m.emp_name as manager
+FROM employees e
+JOIN employees  m ON e.manager_id = m.emp_id;
+
+
+-- 24. Display all employee names along with their corresponding managers' names, but include employees who do not have managers.
+SELECT e.emp_name as employee,m.emp_name as manager
+FROM employees e
+JOIN employees  m ON e.manager_id = m.emp_id;
+
+-- 25. Find the names of departments and the number of employees in each department, including departments that have no employees.
+SELECT d.dept_name,COUNT(e.emp_id) as no_of_emps
+FROM departments d
+LEFT JOIN employees e
+on d.dept_id=e.dept_id
+GROUP BY d.dept_name ;
