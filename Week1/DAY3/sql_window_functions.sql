@@ -39,3 +39,39 @@ FROM employees;
 SELECT *,ROW_NUMBER() OVER(PARTITION BY department ORDER BY emp_name ASC ) AS dept_wise_names_order
 FROM employees ;
 
+ -- 9.	Rank all employees based on salary (highest first). 
+ SELECT *,
+ RANK() OVER(ORDER BY salary DESC) AS emp_sal
+ FROM employees ;
+ 
+ -- 10.	Rank employees within each department based on salary. 
+ SELECT *,
+ RANK() OVER(PARTITION BY department ORDER BY salary) as based_on_salary_by_dept
+ FROM employees ;
+ 
+ -- 11.	Rank employees based on joining date (latest gets rank 1). 
+ SELECT *,
+ RANK() OVER(ORDER BY join_date DESC) as joined_dates
+ FROM employees ;
+ 
+ -- 12.	Rank orders based on order amount (highest first). 
+ 
+ 
+ 
+ -- 13.	Rank orders within each city based on order amount. 
+ SELECT *,
+ RANK() OVER(PARTITION BY department ORDER BY salary) as high_amount
+ FROM employees ;
+ 
+ 
+ -- 14.	Rank employees within department based on salary (lowest first). 
+SELECT *,
+ RANK() OVER(PARTITION BY department ORDER BY salary ASC) as high_amount
+ FROM employees ;
+ 
+-- 15.	Rank employees based on name alphabetically
+SELECT *,
+RANK() OVER(ORDER BY emp_name) as names
+FROM employees ;
+
+-- 16.	Rank orders within each city based on order date. 
