@@ -163,3 +163,17 @@ JOIN projects p ON e.emp_id = p.emp_id;
  ON e.dept_id=d.dept_id ;
  
  -- 19. Display employees who belong to multiple departments, showing the employee's name and the department names.
+SELECT 
+    e.emp_name, 
+    GROUP_CONCAT(d.dept_name SEPARATOR ', ') AS department_list
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id
+GROUP BY e.emp_name
+HAVING COUNT(DISTINCT e.dept_id) > 1;
+
+-- 20. List the names of all departments and employees, ensuring that even if a department has noemployees, it is included in the result.
+SELECT d.dept_name,e.emp_name 
+FROM departments d
+LEFT JOIN employees e
+ON d.dept_id=e.dept_id ;
+
