@@ -80,3 +80,5 @@ SELECT SUBSTRING_INDEX(email, '@', 1) FROM regex_practice;
 -- Q10: Extract email text after the @ (including domain)
 SELECT SUBSTRING_INDEX(email, '@', -1) FROM regex_practice;
 
+-- Q11: Extract only the domain name (no @)
+SELECT REGEXP_SUBSTR(email, '(?<=@)[^.]+') FROM regex_practice;
