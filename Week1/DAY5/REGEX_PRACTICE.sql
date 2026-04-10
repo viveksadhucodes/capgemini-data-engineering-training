@@ -67,3 +67,16 @@ SELECT REGEXP_SUBSTR(mixed_value, '(?<![0-9])[0-9]{2}(?![0-9])') FROM regex_prac
 
 -- Q6: Extract exactly one numeric character
 SELECT REGEXP_SUBSTR(mixed_value, '(?<![0-9])[0-9](?![0-9])') FROM regex_practice;
+
+-- Q7: Extract country code from phone (beginning)
+SELECT REGEXP_REPLACE(phone, '^\\+?([0-9]+)-.*', '$1') FROM regex_practice;
+
+-- Q8: Extract numeric portion between alphabetic characters
+SELECT REGEXP_SUBSTR(mixed_value, '(?<=[a-zA-Z])[0-9]+(?=[a-zA-Z])') FROM regex_practice;
+
+-- Q9: Extract email text before the @
+SELECT SUBSTRING_INDEX(email, '@', 1) FROM regex_practice;
+
+-- Q10: Extract email text after the @ (including domain)
+SELECT SUBSTRING_INDEX(email, '@', -1) FROM regex_practice;
+
