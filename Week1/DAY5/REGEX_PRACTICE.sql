@@ -94,3 +94,19 @@ SELECT REGEXP_SUBSTR(mixed_value, '[0-9]+') FROM regex_practice;
 
 --  Q15: Extract first three characters of full_text
 SELECT LEFT(full_text, 3) FROM regex_practice;
+
+-- Q16: Extract last two characters of full_text
+SELECT RIGHT(full_text, 2) FROM regex_practice;
+
+-- Q17: Extract employee number between prefix and first underscore
+SELECT REGEXP_SUBSTR(full_text, '(?<=[A-Z])[0-9]+(?=_)') FROM regex_practice;
+
+-- Q18: Extract country code at the end of full_text
+SELECT RIGHT(full_text, 2) FROM regex_practice;
+
+-- Q19: Extract text between two underscores
+SELECT REGEXP_SUBSTR(full_text, '(?<=_)[^_]+(?=_)') FROM regex_practice;
+
+
+-- Q20: Extract country code immediately after the plus sign
+SELECT REGEXP_SUBSTR(phone, '(?<=\\+)[0-9]+') FROM regex_practice;
