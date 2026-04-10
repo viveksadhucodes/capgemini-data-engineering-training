@@ -82,3 +82,15 @@ SELECT SUBSTRING_INDEX(email, '@', -1) FROM regex_practice;
 
 -- Q11: Extract only the domain name (no @)
 SELECT REGEXP_SUBSTR(email, '(?<=@)[^.]+') FROM regex_practice;
+
+-- Q12: Extract text after the last dot in email
+SELECT SUBSTRING_INDEX(email, '.', -1) FROM regex_practice;
+
+-- Q13: Extract first continuous alphabetic sequence
+SELECT REGEXP_SUBSTR(mixed_value, '[a-zA-Z]+') FROM regex_practice;
+
+-- Q14: Extract first continuous numeric sequence
+SELECT REGEXP_SUBSTR(mixed_value, '[0-9]+') FROM regex_practice;
+
+--  Q15: Extract first three characters of full_text
+SELECT LEFT(full_text, 3) FROM regex_practice;
