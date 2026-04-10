@@ -110,3 +110,6 @@ SELECT REGEXP_SUBSTR(full_text, '(?<=_)[^_]+(?=_)') FROM regex_practice;
 
 -- Q20: Extract country code immediately after the plus sign
 SELECT REGEXP_SUBSTR(phone, '(?<=\\+)[0-9]+') FROM regex_practice;
+
+
+--the end
