@@ -1,6 +1,16 @@
-# Capgemini Data Engineering Training
+# 🚀 Capgemini Data Engineering Training
+### SQL · PySpark · Databricks · ETL · Data Quality · Regex
 
-## Repository Overview
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+
+---
+
+## 📌 Repository Overview
 
 This repository documents my hands-on learning path in data engineering, with practical work in:
 - SQL fundamentals and analytical querying
@@ -13,7 +23,7 @@ This repository documents my hands-on learning path in data engineering, with pr
 
 The work is organized week-wise, with `Week0` containing phase-level progression and `Week1` containing day-level detailed implementation.
 
-## Current Repository Structure
+## 🗂️ Current Repository Structure
 
 ```text
 capgemini-data-engineering-training/
@@ -45,9 +55,10 @@ capgemini-data-engineering-training/
 \- README.md
 ```
 
-## Detailed Progress by Week
+## 📚 Detailed Progress by Week
 
-## Week0 - Phase-Based Foundation and Pipeline Thinking
+---
+## 🟣 Week0 - Phase-Based Foundation and Pipeline Thinking
 
 `Week0` is the most phase-driven part of the repository and contains core SQL/PySpark building blocks.
 
@@ -149,7 +160,8 @@ Current state:
 - folders are present
 - readme files are currently placeholders/empty
 
-## Week1 - Day-Wise SQL, PySpark, Notebook, and Regex Work
+---
+## 🔵 Week1 - Day-Wise SQL, PySpark, Notebook, and Regex Work
 
 `Week1` contains detailed daily tasks and is currently the most fully documented week.
 
@@ -225,13 +237,15 @@ Implemented work:
 - city/customer/brand revenue analyses
 - SQL reporting via temp view `final_sales`
 
-## Week2, Week3, Week4 Current Status
+---
+## 🟠 Week2, Week3, Week4 Current Status
 
 - `Week2/README.md` exists but is currently empty placeholder content.
 - `Week3/README.md` exists but is currently empty placeholder content.
 - `Week4/README.me` exists with placeholder content and includes `Week4/DAY4/` folder.
 
-## Technical Skills Demonstrated in This Repository
+---
+## 🧠 Technical Skills Demonstrated in This Repository
 
 - SQL DDL and DML
 - SQL aggregations and filtering patterns
@@ -243,7 +257,8 @@ Implemented work:
 - notebook-driven reporting workflows in Databricks
 - regex-based extraction for string parsing tasks
 
-## How to Use This Repository
+---
+## ⚙️ How to Use This Repository
 
 1. Start with `Week0` if you want phase-wise learning progression from fundamentals.
 2. Use `Week1/README.md` for the most detailed day-by-day implementation log.
@@ -251,12 +266,14 @@ Implemented work:
 4. Open `.py` files for PySpark transformations and data-cleaning pipelines.
 5. Open `.ipynb` notebooks for Databricks-oriented workflows.
 
-## Execution Notes
+---
+## 🛠️ Execution Notes
 
 - Python scripts assume a PySpark-capable environment.
 - Notebook files (`.ipynb`) are designed for Databricks-style execution.
 - Some folders include screenshots and output references as evidence of completed tasks.
 
-## Author
+---
+## 🙋 Author
 
 Vivek Sadhu
