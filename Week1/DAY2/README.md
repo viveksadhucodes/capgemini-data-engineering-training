@@ -1,100 +1,71 @@
-# Day 2: SQL Aggregations and Joins
+# Day 2 - SQL Aggregations and Relational Joins
 
-## Overview
+## Objective
 
-This folder showcases my Day 2 SQL practice, focused on two essential database skills:
-
-- 📊 Aggregation using `GROUP BY`, `HAVING`, and SQL summary functions
-- 🔗 Table relationships using `JOIN`s, including self joins and outer joins
-
-## Quick Snapshot
-
-By the end of Day 2, I worked on:
-
-- creating and populating sample business tables
-- writing summary and reporting queries
-- applying aggregate functions on grouped data
-- joining multiple tables to extract meaningful insights
-- handling missing relationships using outer joins and `NULL`
-
-## What’s Inside
-
-### 📁 `sql_queries_day2.sql`
-
-This file focuses on aggregation and reporting queries using:
-
-- `Employee`
-- `Sales`
-
-### Key practice areas:
-
-- total salary by department
-- employee count by department
-- average, minimum, and maximum salary
-- grouped filtering using `HAVING`
-- product-wise total and average sales
-- employee-wise sales analysis
-- top-performing employees and departments
-- identifying employees with no sales
-
-### Concepts covered:
-
-- `SUM()`
-- `COUNT()`
-- `AVG()`
-- `MIN()`
-- `MAX()`
-- `GROUP BY`
-- `HAVING`
-- reporting with joined tables
-
-### 📁 `sql_joins_day2.sql`
-
-This file focuses on relational queries using:
-
-- `employees`
-- `departments`
-- `projects`
-
-### Key practice areas:
-
-- employee-manager relationship using self join
-- employee-to-department mapping
-- employee-to-project mapping
-- employees without departments
-- employees without projects
-- departments without employees
-- combining join outputs using `UNION`
-
-### Concepts covered:
-
-- `INNER JOIN`
-- `LEFT JOIN`
-- `RIGHT JOIN`
-- self join
-- `NULL` handling
-- `UNION`
+Practice analytical SQL and relationship-based querying by building sample datasets and solving reporting-focused business questions.
 
 ## Files in This Folder
 
-- 📄 `sql_queries_day2.sql` -> aggregation, grouped analysis, and reporting queries
-- 📄 `sql_joins_day2.sql` -> join-based query practice across multiple related tables
+- `sql_queries_day2.sql` - aggregation and reporting exercises
+- `sql_joins_day2.sql` - join-focused relational exercises
+- `README.md` - this documentation
 
-## Skills Demonstrated
+## 1) `sql_queries_day2.sql` - Aggregation Track
 
-- ✅ writing clean table creation and insert statements
-- ✅ summarizing data using aggregate functions
-- ✅ filtering grouped results using `HAVING`
-- ✅ connecting related tables with joins
-- ✅ solving business-style SQL questions
-- ✅ building a stronger foundation in analytical querying
+### Tables created
+- `Employee(emp_id, emp_name, department, salary, joining_date)`
+- `Sales(sales_id, emp_id, product, amount, sale_date)`
 
-## Final Impression
+### Work completed
+- departmental salary totals, counts, averages, min/max
+- filtered grouped outputs using `HAVING`
+- product-wise and employee-wise sales summaries
+- top department and top employee style ranking using `ORDER BY ... LIMIT`
+- department-level and employee-level combined salary/sales attempts
+- identifying employees with no sales using `LEFT JOIN` + grouped conditions
 
-Day 2 helped me move from basic SQL queries to more practical data analysis tasks.  
-It demonstrates my understanding of both:
+### SQL concepts practiced
+- `GROUP BY`, `HAVING`
+- `SUM`, `COUNT`, `AVG`, `MIN`, `MAX`
+- aggregate filtering and grouped reporting
+- join-supported business summaries
 
-- 📈 analytical SQL using aggregates
-- 🧩 relational SQL using joins
+## 2) `sql_joins_day2.sql` - Join Track
 
-In one glance, this folder reflects hands-on practice with real-world query patterns used in reporting and database analysis.
+### Tables created
+- `employees(emp_id, emp_name, manager_id, dept_id)`
+- `departments(dept_id, dept_name)`
+- `projects(project_id, project_name, emp_id)`
+
+### Work completed
+- manager reporting lines using self joins
+- employee-department and employee-project mapping
+- inclusion of unmatched rows via left/right style joins
+- department coverage and project coverage checks
+- full relationship views using `UNION` between left/right outputs
+- null-handling style outputs using `COALESCE`
+
+### SQL concepts practiced
+- self join
+- `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`
+- anti-pattern detection via null checks
+- `UNION` for merged relational completeness
+
+## Coverage Summary
+
+This day demonstrates two essential SQL capabilities required in data engineering:
+- summarizing data for reporting (aggregation path), and
+- connecting normalized tables accurately (join path).
+
+## Practical Value
+
+Day 2 directly maps to real project tasks such as:
+- KPI table creation
+- department/product dashboards
+- unmatched-record identification
+- organizational and project relationship reporting
+
+## Notes for Review
+
+- A few exercise prompts in SQL comments are placeholders or partially implemented; this is expected in practice sets.
+- The implemented queries still provide broad coverage of grouped analytics and join patterns.
