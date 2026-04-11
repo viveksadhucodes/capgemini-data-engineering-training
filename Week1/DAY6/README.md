@@ -1,151 +1,159 @@
-# Day 6 - Real-Data Cleaning and Analysis with PySpark + SQL
+# Day 6 - Sales Data Engineering Pipeline (Core + Advanced)
 
 ## Overview
 
-This folder contains my Day 6 hands-on work where I simulated a small real-world sales pipeline in Databricks.
-I created customer, car, and sales datasets, cleaned quality issues, validated referential integrity, and produced business-style reports using both PySpark and SQL.
+Day 6 captures a full practical progression from a small prototype pipeline to an advanced multi-table analytical workflow in Databricks (PySpark + SQL).
 
-The notebook shows an end-to-end mini workflow:
-- build raw datasets
-- clean nulls and bad values
-- remove invalid foreign-key records using joins
-- validate row-level quality metrics
-- generate revenue and sales insights
+This folder now contains two notebook implementations:
+- `day6.ipynb` - core pipeline (compact and concept-focused)
+- `day6_advanced_data.ipynb` - scaled and more production-style workflow with dealer analytics and richer validation
+
+The goal is consistent across both notebooks:
+1. ingest raw transactional data,
+2. clean and validate it,
+3. enforce relational integrity,
+4. generate business-ready analytical outputs.
+
+---
 
 ## Files in This Folder
 
-- `day6.ipynb` - Main Databricks notebook containing all PySpark and SQL steps.
-- `README.md` - Documentation for what was implemented and why.
+- `day6.ipynb`
+  - first implementation of cleaning + validation + reporting flow
+- `day6_advanced_data.ipynb`
+  - expanded implementation with larger sample data, dealer dimension integration, and deeper analytics
+- `README.md`
+  - this documentation
 
-## Data Model Used
+---
 
-The notebook creates three in-memory DataFrames:
+## Data Entities Used
 
-1. `customers`
-- `customer_id`
-- `name`
-- `city`
+### Core notebook (`day6.ipynb`)
+- `customers(customer_id, name, city)`
+- `cars(car_id, brand, model, price)`
+- `sales(sale_id, customer_id, car_id, sale_date, quantity)`
 
-2. `cars`
-- `car_id`
-- `brand`
-- `model`
-- `price`
+### Advanced notebook (`day6_advanced_data.ipynb`)
+- `customers`
+- `cars`
+- `sales`
+- `dealers(dealer_id, name, city)`
+- `sales_dealer(sale_id, dealer_id)`
 
-3. `sales`
-- `sale_id`
-- `customer_id`
-- `car_id`
-- `sale_date`
-- `quantity`
+This creates a stronger star-like analytical model where each sale can be analyzed by customer, car, and dealer dimensions.
 
-This structure is intentionally relational so joins can validate data quality and drive analysis.
+---
 
-## Work Done Step by Step
+## Notebook 1: `day6.ipynb` (Core Flow)
 
-### 1. Raw Data Setup
+### Phase A - Raw setup and issue simulation
+The notebook creates small in-memory datasets with intentional quality issues:
+- null customer name
+- negative car price
+- orphan sale record with unmatched customer key
 
-I initialized Spark and created sample DataFrames with deliberate quality issues:
-- one customer name is `NULL`
-- one car price is negative (`-20000`)
-- one sales row references a non-existent customer (`customer_id = 99`)
+### Phase B - Cleaning
+Implemented cleaning steps:
+- fill null customer names (`Unknown`)
+- convert negative prices to positive (`abs(price)`)
 
-I then converted `sale_date` to proper `DATE` type.
+### Phase C - Integrity filtering
+- inner joins are used to build `df_final`
+- invalid foreign-key records are removed automatically during join
 
-### 2. Data Cleaning
+### Phase D - Validation
+- left anti joins identify unmatched rows
+- reconciliation metrics are printed:
+  - total raw records
+  - invalid foreign-key records
+  - final cleaned records
+- count check validates pipeline consistency
 
-Two cleaning operations were applied:
+### Phase E - Analytics
+PySpark aggregations:
+- customer-wise total spend
+- brand-wise sales count
+- city-wise revenue
 
-- Null handling:
-  - `customers_cleaned = customers.fillna({"name": "Unknown"})`
-  - This ensures customer names are never empty in downstream reporting.
+SQL analytics via temp view `final_sales`:
+- top models per city using `DENSE_RANK()`
+- purchase frequency by customer
+- monthly revenue and transaction trend
+- schema inspection (`DESCRIBE final_sales`)
 
-- Negative value correction:
-  - `cars_cleaned = cars.withColumn("price", abs(col("price")))`
-  - This fixes invalid negative prices.
+---
 
-### 3. Invalid Key Removal (Integrity Cleaning)
+## Notebook 2: `day6_advanced_data.ipynb` (Advanced Flow)
 
-I created `df_final` using inner joins:
-- `sales` join `customers_cleaned` on `customer_id`
-- result join `cars_cleaned` on `car_id`
+This notebook extends the core logic with larger synthetic data, additional dimensions, and richer reporting.
 
-Because joins are inner joins, rows with invalid foreign keys are automatically dropped.
-This removes bad transactional rows before analysis.
+### Phase 1 - Data cleaning
+Implemented line-by-line cleaning operations include:
+- null handling for customer and car attributes
+- default value imputation for missing fields
+- date standardization on `sale_date`
+- negative price correction using absolute value
+- string normalization using `trim()`
+- duplicate removal on `sale_id`
 
-### 4. Validation Report
+### Phase 2 - Quality control and validation report
+Validation logic includes:
+- orphan detection with `left_anti` joins
+  - sales with invalid customers
+  - sales with invalid cars
+- null counts and duplicate counts
+- summarized validation DataFrame (`validation_report_df`)
+- percentage contribution per quality check
 
-I added anti-join based validation:
+This creates a measurable quality-control layer before business reporting.
 
-- `bad_customer_data`: sales rows with missing customer matches
-- `bad_car_data`: sales rows with missing car matches
+### Phase 3 - Transformations and dimensional joins
+- joins `sales`, `customers`, `cars`, `sales_dealer`, and `dealers`
+- resolves column ambiguity by renaming dealer `name`/`city` fields (`dealer_name`, `dealer_city`)
+- produces curated joined dataset for analysis
 
-Then printed a reconciliation summary:
-- total raw records
-- invalid foreign key records
-- final cleaned records
+### Phase 4 - Business analytics
+PySpark analyses:
+- customer lifetime spend ranking
+- brand-wise distinct cars sold
+- city-wise revenue
+- dealer revenue by dealer and top dealers
+- dealer city contribution (`showroom_revenue`)
 
-A final check confirms whether:
-`total_raw - invalid_fk == final_records`
+SQL analyses from temp view `final_sales_table`:
+- top 3 customers per city (`DENSE_RANK`)
+- monthly sales volume and revenue trend
+- repeat customer and lifetime value report
 
-If true, validation passes.
+---
 
-### 5. Analytical Aggregations (PySpark)
+## Engineering Practices Demonstrated
 
-Using `df_final`, I generated:
+- clean-before-join discipline
+- anti-join based orphan record detection
+- explicit duplicate control
+- schema-safe joins with renamed conflicting columns
+- layered analytics (PySpark + SQL on temp views)
+- validation-first mindset with quantifiable data quality checks
 
-- Revenue per customer
-  - group by `customer_id`, `name`
-  - total spend using `SUM(price)`
+---
 
-- Cars sold per brand
-  - group by `brand`
-  - sales count using `COUNT(car_id)`
+## Key Outcomes
 
-- City-wise revenue
-  - group by `city`
-  - total city revenue using `SUM(price)`
+By the end of Day 6, the work demonstrates both:
+- a foundational data engineering pattern (`day6.ipynb`), and
+- an advanced analytical pipeline with broader business context (`day6_advanced_data.ipynb`).
 
-### 6. SQL Layer on Cleaned Data
+This progression shows practical readiness for real ETL/reporting tasks:
+- handling imperfect data,
+- validating correctness,
+- producing stakeholder-friendly metrics.
 
-I created temp view:
-- `final_sales`
+---
 
-Then ran SQL reports:
+## Reviewer Quick Start
 
-1. Top models by city using window function
-- `DENSE_RANK()` partitioned by city
-- keeps top 3 models per city
-
-2. Customer purchase frequency
-- count purchases per `customer_id`, `name`
-
-3. Monthly revenue and transaction trend
-- month-wise `SUM(price)` and `COUNT(sale_id)`
-
-4. Schema inspection
-- `DESCRIBE final_sales`
-
-## Key Concepts Practiced
-
-- Data cleaning (`fillna`, value correction)
-- Referential integrity checks using joins
-- Anti-join based bad-record detection
-- Data validation and reconciliation metrics
-- Aggregation with `groupBy`, `SUM`, `COUNT`
-- Window functions (`DENSE_RANK`) in SQL
-- Hybrid PySpark + SQL workflow in Databricks
-
-## Outcome
-
-By the end of Day 6, I built a compact but complete data-quality and reporting pipeline.
-The notebook demonstrates how to:
-- convert raw transactional data into cleaned analysis-ready data
-- verify cleaning impact with measurable counts
-- produce business-facing insights from the final curated dataset
-
-## Notes
-
-- The current notebook focuses on null handling, invalid key removal, and value correction.
-- Explicit duplicate-removal logic (`dropDuplicates`) is not present in the current cells.
-- In one cell, `cars_per_brand` is calculated but `revenue_per_cust` is displayed again; this does not affect saved data but can be adjusted for display accuracy.
+1. Open `day6.ipynb` to understand the base cleaning and validation lifecycle.
+2. Open `day6_advanced_data.ipynb` to see how the same logic scales with added dimensions and richer analytics.
+3. Compare final SQL sections in both notebooks to see evolution from basic reporting to advanced customer/dealer insights.
