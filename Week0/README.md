@@ -1,196 +1,103 @@
-# 🚀 Week0 - Capgemini Data Engineering Foundations
-
-### SQL · PySpark · ETL Thinking · Data Quality · Segmentation · Olist Analytics
+# 🚀 Week 0 - Data Engineering Foundations
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
+![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Status](https://img.shields.io/badge/Week0-Documented-success?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Ready-success?style=for-the-badge)
 
----
+## 📌 What This Week Proves
 
-## 📌 Week0 Purpose
+Week 0 is the foundation layer of the Capgemini Data Engineering training journey. It starts with Databricks Lakeflow and DevOps concepts, then moves through SQL basics, PySpark transformations, data quality handling, customer segmentation, window functions, and realistic e-commerce analytics.
 
-`Week0` captures the foundation stage of my Capgemini data engineering journey.
-The work starts with environment setup and SQL basics, then moves into PySpark transformations, data-quality handling, ETL pipeline structure, segmentation logic, and real-dataset analytics on Olist.
+The work is organized as a progression from simple query practice to complete analytical pipelines:
 
-This folder serves as proof of both:
-- conceptual understanding (phase readmes, reference material), and
-- hands-on implementation (`.sql`, `.py`, `.ipynb`, and output evidence).
+```text
+Concepts -> SQL/PySpark basics -> joins and aggregations -> cleaning -> segmentation -> real dataset analytics -> reporting pipeline
+```
 
----
-
-## 🗂️ Week0 Structure
+## 🗂️ Folder Map
 
 ```text
 Week0/
-|- Phase0/
-|- Phase1/
-|- Phase2/
-|- Phase3/
-|- Phase3A/
-|- Phase4/
-|- Phase4A/
-|- Phase5/
-\- Phase6/
+|- Phase0/   Databricks Lakeflow and DevOps reference foundation
+|- Phase1/   SQL basics with PySpark equivalents
+|- Phase2/   Joins, aggregations, and customer/order reporting
+|- Phase3/   ETL pipeline mindset and SQL-to-PySpark mapping
+|- Phase3A/  Data quality challenge with null, duplicate, and invalid-value handling
+|- Phase4/   Business mini-pipeline with sales metrics and customer segmentation
+|- Phase4A/  Advanced segmentation with fixed thresholds and quantile buckets
+|- Phase5/   Olist e-commerce analytics notebook
+\- Phase6/   End-to-end dirty-data pipeline with validation, windows, and final reporting
 ```
 
----
+## 🧭 Phase-by-Phase Highlights
 
-## 📚 Phase-by-Phase Summary
+| Phase | Main Focus | Evidence | Engineering Value |
+|---|---|---|---|
+| [Phase0](Phase0/) | Lakeflow, Jobs, Connect, DevOps | PDFs + README | Establishes Databricks production concepts before coding |
+| [Phase1](Phase1/) | SQL fundamentals and PySpark equivalents | `sql_queries.sql`, `pyspark_code.py`, output screenshots | Builds query fluency across SQL and DataFrame APIs |
+| [Phase2](Phase2/) | Customer/order aggregations | `sql_queries.sql`, `pyspark.py`, outputs | Covers revenue, top customers, no-order detection, and order frequency |
+| [Phase3](Phase3/) | ETL sequence discipline | `sql_queries.sql`, `pyspark.py` | Reinforces extract, clean, filter, join, aggregate, and output flow |
+| [Phase3A](Phase3A/) | Data quality correction | `pyspark.py`, output screenshot | Removes null keys, duplicates, invalid ages, and fills missing attributes |
+| [Phase4](Phase4/) | Mini business pipeline | `py_spark.py`, output | Produces daily sales, city revenue, top customers, repeat customers, and segments |
+| [Phase4A](Phase4A/) | Advanced segmentation | `pyspark.py`, outputs | Compares fixed business tiers with quantile-driven tiers |
+| [Phase5](Phase5/) | Olist real dataset analytics | `Phase5.py.ipynb` | Applies joins, windows, dense ranking, segmentation, and final reporting on real e-commerce tables |
+| [Phase6](Phase6/) | Validated reporting pipeline | `Phase6.ipynb` | Cleans dirty customer/order data, detects orphan orders, ranks customers, builds running totals and monthly trends |
 
-## Phase0 - Lakeflow and DevOps Foundations
+## 🔎 Key Work Delivered
 
-Key assets:
-- `Phase0/README.md`
-- Lakeflow and DevOps PDFs
+### SQL and PySpark Core
+- Created sample business tables and queried them with filtering, projection, grouping, and ordering.
+- Rebuilt the same logic in PySpark using `select`, `filter`, `groupBy`, `agg`, and ordered results.
+- Practiced SQL-to-PySpark translation so the same business question can be solved in both styles.
 
-Focus:
-- Databricks Lakeflow concepts
-- ingestion, declarative pipelines, job orchestration
-- DevOps mindset for data engineering delivery
+### Joins and Business Metrics
+- Calculated total and average order value per customer.
+- Identified top spenders and customers with no orders.
+- Produced city-wise revenue and frequent-customer reporting.
+- Used joins as the bridge between normalized source tables and analytical outputs.
 
-## Phase1 - SQL Basics + PySpark Equivalents
+### Data Quality Mindset
+- Removed null primary keys before downstream joins.
+- De-duplicated repeated customer records.
+- Replaced missing text fields with controlled defaults such as `Guest` and `Unknown`.
+- Filtered logically invalid records, including negative ages and invalid transaction values.
 
-Key assets:
-- `Phase1/sql_queries.sql`
-- `Phase1/pyspark_code.py`
-- `Phase1/Outputs/`
+### Segmentation and Window Analytics
+- Implemented Gold/Silver/Bronze customer tiers with `when/otherwise`.
+- Used `approxQuantile` for distribution-aware segmentation.
+- Applied `RANK`, `DENSE_RANK`, running totals, and city-level ranking in notebooks.
 
-Work delivered:
-- basic table creation and inserts
-- filtering and grouped counts
-- SQL-to-PySpark mapping for core operations
+### Real Dataset and Reporting
+- Used Olist datasets from Databricks Volumes for customer, order, payment, item, product, and category analysis.
+- Built daily sales with running totals.
+- Ranked top customers per city and top products per category.
+- Created final reporting tables with customer spend, city, segment, and order counts.
 
-## Phase2 - Transformation and Aggregation Practice
+## 🧠 Skills Demonstrated
 
-Key assets:
-- `Phase2/sql_queries.sql`
-- `Phase2/pyspark.py`
-- `Phase2/outputs/`
-
-Work delivered:
-- customer/order transformations
-- top customers, no-order detection, city revenue, average spending
-- early practice of join + aggregation sequencing
-
-## Phase3 - ETL and Pipeline Mindset
-
-Key assets:
-- `Phase3/sql_queries.sql`
-- `Phase3/pyspark.py`
-- `Phase3/Outputs/`
-
-Work delivered:
-- structured flow: extract -> clean -> filter -> join -> aggregate -> output
-- emphasis on cleaning before joins and filtering before heavy aggregation
-
-## Phase3A - Data Quality Challenge
-
-Key assets:
-- `Phase3A/pyspark.py`
-- `Phase3A/README.md`
-- `Phase3A/Outputs/`
-
-Work delivered:
-- null-key removal
-- duplicate elimination
-- invalid value filtering (for example negative ages)
-- imputation for missing attributes
-
-## Phase4 - Business Mini Pipeline
-
-Key assets:
-- `Phase4/py_spark.py`
-- `Phase4/Output/`
-- `Phase4/README.md`
-
-Work delivered:
-- daily sales metrics
-- city-wise revenue
-- top customer and repeat customer logic
-- spending-based customer segmentation
-- final reporting output generation
-
-## Phase4A - Advanced Segmentation
-
-Key assets:
-- `Phase4A/pyspark.py`
-- `Phase4A/README.md`
-
-Work delivered:
-- rule-based bucketing (`Gold/Silver/Bronze`)
-- quantile-based segmentation using `approxQuantile`
-- distribution analysis per segment
-
-## Phase5 - Olist Real Dataset Analytics (Updated)
-
-Key assets:
-- `Phase5/Phase5.py.ipynb`
-- `Phase5/README.md`
-
-Implemented in notebook (line-by-line verified):
-- load Olist datasets from Databricks Volume:
-  - customers
-  - orders
-  - payments
-  - order items
-  - products
-  - category translation
-- Task 1: top 3 customers per city using window `RANK()` on total spend
-- Task 2: daily sales + running total using ordered window aggregation
-- Task 3: top products per category using `DENSE_RANK()`
-- Task 4: customer total spend (customer-level CLV-style aggregate)
-- Task 5: customer segmentation (`Gold`, `Silver`, `Bronze`)
-- Task 6: final reporting table combining:
-  - `customer_id`
-  - `customer_city`
-  - `total_spend`
-  - `segment`
-  - `total_orders`
-
-Why Phase5 is important:
-- this is the transition from practice data to realistic e-commerce scale and relationships.
-
-## Phase6 - Current State (Updated)
-
-Key assets:
-- `Phase6/README.md`
-
-Current status observed:
-- Phase6 folder is created and tracked.
-- README placeholder exists, but implementation files are not yet present in this repository snapshot.
-
-This indicates Phase6 setup is in place and ready for next-stage implementation/documentation updates.
-
----
-
-## 🧠 Core Skills Demonstrated in Week0
-
-- SQL querying and grouped analytics
+- Databricks Lakeflow and data DevOps awareness
+- SQL DDL, DML, filtering, grouping, and ordering
 - PySpark DataFrame transformations
-- join strategy and null-safe processing
-- data quality controls (nulls, duplicates, invalid values)
-- ETL pipeline ordering discipline
-- customer segmentation methods
-- window-function analytics on real datasets
-- integration of multiple Olist tables into final reports
+- Join strategy and relationship-aware reporting
+- Null handling, deduplication, and invalid-record filtering
+- Customer segmentation with business and statistical rules
+- Window functions for ranking and cumulative analytics
+- End-to-end notebook-based reporting
 
----
+## ✅ Reviewer Quick Scan
 
-## 📈 Why Week0 Matters
+Start here if you are reviewing the week:
 
-Week0 establishes the engineering base required for advanced weekly work:
-- strong query and transformation fundamentals,
-- data quality-first approach,
-- and evidence of scaling from toy data to real-business data logic.
-
-For review discussions, this folder demonstrates consistent progression from foundational concepts to applied analytics.
-
----
+1. [Phase1/sql_queries.sql](Phase1/sql_queries.sql) and [Phase1/pyspark_code.py](Phase1/pyspark_code.py) for SQL/PySpark basics.
+2. [Phase3A/pyspark.py](Phase3A/pyspark.py) for focused data cleaning.
+3. [Phase4/py_spark.py](Phase4/py_spark.py) and [Phase4A/pyspark.py](Phase4A/pyspark.py) for reporting and segmentation.
+4. [Phase5/Phase5.py.ipynb](Phase5/Phase5.py.ipynb) for Olist analytics.
+5. [Phase6/Phase6.ipynb](Phase6/Phase6.ipynb) for the most complete Week 0 validation and reporting workflow.
 
 ## 👤 Author
 
-Vivek Sadhu
+**Vivek Sadhu**
+
 Data Engineering Trainee

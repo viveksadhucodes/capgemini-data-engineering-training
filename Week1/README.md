@@ -1,139 +1,121 @@
-# Week 1 - SQL, PySpark, Data Quality, and Notebook Analytics
+# 📊 Week 1 - SQL, PySpark, Data Quality, and Analytical Pipelines
 
-## Week Objective
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Regex](https://img.shields.io/badge/Regex-Text%20Engineering-4B5563?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Review%20Ready-success?style=for-the-badge)
 
-Week 1 is focused on building practical data engineering strength across:
-- structured SQL analysis,
-- PySpark-based data cleaning,
-- real-data reconciliation in Databricks notebooks,
-- regex parsing for semi-structured fields,
-- and end-to-end validation/reporting pipelines.
+## 🎯 Week Objective
 
-This README is the master index for all Day-level work and documentation.
+Week 1 turns the Week 0 foundation into stronger hands-on execution. The focus is practical data engineering: cleaning raw files, writing analytical SQL, validating joins, reconciling real submissions, extracting semi-structured patterns with regex, and building notebook-driven reporting pipelines.
 
-## Week 1 Structure
+The week follows a clear learning arc:
+
+```text
+Raw data -> cleaning -> SQL analytics -> joins -> CASE/window logic -> reconciliation -> regex parsing -> validated reporting
+```
+
+## 🗂️ Folder Map
 
 ```text
 Week1/
-|- README.md
-|- DAY1/
-|  |- C1.csv
-|  |- customer_cleaning_pyspark.py
-|  |- DAY1.py
-|  |- README.md
-|  \- __pycache__/
-|- DAY2/
-|  |- sql_queries_day2.sql
-|  |- sql_joins_day2.sql
-|  \- README.md
-|- DAY3/
-|  |- sql_queries_day3.sql
-|  |- sql_window_functions.sql
-|  \- README.md
-|- DAY4/
-|  |- day4_real_data.ipynb
-|  \- README.md
-|- DAY5/
-|  |- REGEX_PRACTICE.sql
-|  \- README.md
-\- DAY6/
-   |- day6.ipynb
-   |- day6_advanced_data.ipynb
-   \- README.md
+|- DAY1/   PySpark customer CSV cleaning
+|- DAY2/   SQL aggregations and relational joins
+|- DAY3/   CASE logic and window functions
+|- DAY4/   Databricks SQL reconciliation notebook
+|- DAY5/   Regex and string extraction practice
+|- DAY6/   End-to-end sales pipeline notebooks
+|- Data_Engineering_Week_1_Portfolio.pptx
+|- Master Guide_ Data Cleaning Techniques in PySpark.pdf
+|- Tranformations.pdf
+\- What is Data Validation.pdf
 ```
 
-## Day-by-Day Documentation Index
+## 📚 Day-by-Day Portfolio
 
-## Day 1 - PySpark Customer Cleaning
-- Folder: `Week1/DAY1/`
-- README: `Week1/DAY1/README.md`
-- Evidence files:
-  - `C1.csv`
-  - `customer_cleaning_pyspark.py`
+| Day | Main Focus | Evidence | Practical Outcome |
+|---|---|---|---|
+| [DAY1](DAY1/) | Customer CSV cleaning in PySpark | `C1.csv`, `customer_cleaning_pyspark.py` | Converts messy customer data into typed, standardized, deduplicated output |
+| [DAY2](DAY2/) | SQL aggregations and joins | `sql_queries_day2.sql`, `sql_joins_day2.sql` | Builds KPI-style summaries and relationship-aware reports |
+| [DAY3](DAY3/) | Conditional SQL and ranking | `sql_queries_day3.sql`, `sql_window_functions.sql` | Implements business rules, salary logic, row numbering, rank, and dense rank |
+| [DAY4](DAY4/) | Real Databricks reconciliation | `day4_real_data.ipynb` | Maps student identities, validates submissions, detects missing/invalid/duplicate records |
+| [DAY5](DAY5/) | Regex extraction in SQL | `REGEX_PRACTICE.sql` | Extracts IDs, email parts, phone codes, delimiters, and numeric patterns |
+| [DAY6](DAY6/) | Sales pipeline, validation, analytics | `day6.ipynb`, `day6_advanced_data.ipynb` | Cleans dimensional data, validates foreign keys, joins dealer/customer/car data, and produces analytics |
 
-Highlights:
-- null-like value normalization
-- schema casting and categorical standardization
-- multi-format date parsing
-- mandatory-field filtering and deduplication
+## 🔍 What Each Day Demonstrates
 
-## Day 2 - SQL Aggregations and Joins
-- Folder: `Week1/DAY2/`
-- README: `Week1/DAY2/README.md`
-- Evidence files:
-  - `sql_queries_day2.sql`
-  - `sql_joins_day2.sql`
+### DAY1 - PySpark Customer Cleaning
+- Normalizes null-like strings such as `blank`, `null`, `none`, `na`, and empty values.
+- Casts `CustomerID` and `Sales` into usable numeric types.
+- Standardizes names, countries, and categories.
+- Handles multiple date formats with fallback parsing.
+- Drops unusable key/date records and removes duplicate business rows.
 
-Highlights:
-- grouped reporting with `SUM/COUNT/AVG/MIN/MAX`
-- `GROUP BY` + `HAVING`
-- self joins and multi-table join patterns
-- unmatched record handling and union-style completeness views
+### DAY2 - SQL Aggregations and Joins
+- Creates employee, sales, department, and project tables.
+- Uses `SUM`, `COUNT`, `AVG`, `MIN`, `MAX`, `GROUP BY`, and `HAVING`.
+- Practices self joins, inner joins, left/right joins, union-style completeness views, and `COALESCE`.
+- Identifies unmatched employees, departments, projects, and no-sales scenarios.
 
-## Day 3 - CASE and Window Functions
-- Folder: `Week1/DAY3/`
-- README: `Week1/DAY3/README.md`
-- Evidence files:
-  - `sql_queries_day3.sql`
-  - `sql_window_functions.sql`
+### DAY3 - CASE and Window Functions
+- Encodes business rules with simple and nested `CASE`.
+- Calculates hike, bonus, category, and performance-style classifications.
+- Uses `ROW_NUMBER`, `RANK`, and `DENSE_RANK`.
+- Compares global ranking with department-partitioned ranking.
 
-Highlights:
-- nested business rules using `CASE`
-- hike/bonus/category logic
-- window functions: `ROW_NUMBER`, `RANK`, `DENSE_RANK`
-- partitioned and global ranking approaches
+### DAY4 - Real Dataset Reconciliation
+- Loads multiple CSV sources into Databricks SQL tables.
+- Renames raw `_c0`, `_c1`, style fields into meaningful columns.
+- Builds a normalized `email_mapping` table.
+- Detects missing submissions, valid submissions, ghost responses, duplicates, and multiple-email behavior.
+- Produces final status outputs such as `gold_student_activity`, `first_submissions_only`, and `final_student_report`.
 
-## Day 4 - Real Data Reconciliation Notebook
-- Folder: `Week1/DAY4/`
-- README: `Week1/DAY4/README.md`
-- Evidence file:
-  - `day4_real_data.ipynb`
+### DAY5 - Regex and Semi-Structured Fields
+- Builds a 40-row practice dataset with mixed IDs, email addresses, phone numbers, and alphanumeric fields.
+- Uses `REGEXP_SUBSTR`, `REGEXP_REPLACE`, `LEFT`, `RIGHT`, and `SUBSTRING_INDEX`.
+- Extracts usernames, domains, TLDs, country codes, delimiter-based sections, and numeric sequences.
 
-Highlights:
-- CSV ingestion in Databricks SQL
-- email normalization and identity mapping
-- missing/valid/invalid submission detection
-- duplicate detection with window logic
-- final student classification reporting
+### DAY6 - End-to-End Sales Pipeline
+- Starts with a compact workflow in `day6.ipynb` and expands into a richer dealer-integrated pipeline in `day6_advanced_data.ipynb`.
+- Cleans null names, trims strings, converts dates, fixes negative prices, and removes duplicate sale IDs.
+- Uses `left_anti` checks for orphan customer/car keys.
+- Builds a validation report with raw counts, nulls, duplicates, orphan records, clean-record counts, and percentages.
+- Produces customer spend, brand sales, city revenue, dealer revenue, top dealers, showroom revenue, monthly trends, and repeat-customer lifetime value.
 
-## Day 5 - Regex SQL Practice
-- Folder: `Week1/DAY5/`
-- README: `Week1/DAY5/README.md`
-- Evidence file:
-  - `REGEX_PRACTICE.sql`
+## 🧠 Skills Demonstrated
 
-Highlights:
-- 40-row sample dataset for text-pattern analysis
-- 20 regex extraction queries
-- email/phone/id parsing and delimiter extraction
+- PySpark cleaning pipelines and defensive ingestion
+- SQL aggregation and KPI reporting
+- Relational joins and unmatched-record analysis
+- Conditional business logic with `CASE`
+- Window functions for ranking and duplicate detection
+- Databricks SQL table/view creation
+- Identity mapping and reconciliation
+- Regex extraction for semi-structured data
+- Foreign-key validation and anti-join quality checks
+- Notebook-based analytical reporting
 
-## Day 6 - Core + Advanced Sales Pipeline
-- Folder: `Week1/DAY6/`
-- README: `Week1/DAY6/README.md`
-- Evidence files:
-  - `day6.ipynb`
-  - `day6_advanced_data.ipynb`
+## 📎 Supporting Study Material
 
-Highlights:
-- end-to-end cleaning and FK validation
-- anti-join quality checks and validation reports
-- multi-table transformations with dealer dimension
-- customer/city/dealer analytics in PySpark + SQL
+- [Data_Engineering_Week_1_Portfolio.pptx](Data_Engineering_Week_1_Portfolio.pptx)
+- [Master Guide_ Data Cleaning Techniques in PySpark.pdf](Master%20Guide_%20Data%20Cleaning%20Techniques%20in%20PySpark.pdf)
+- [Tranformations.pdf](Tranformations.pdf)
+- [What is Data Validation.pdf](What%20is%20Data%20Validation.pdf)
 
-## Skills Demonstrated in Week 1
+## ✅ Reviewer Quick Scan
 
-- SQL modeling and query writing
-- grouped analytics and KPI-style summaries
-- relational joins across multiple entities
-- conditional transformations using CASE
-- ranking and window-function analysis
-- PySpark cleaning and data typing
-- notebook-based reconciliation and reporting
-- regex extraction for semi-structured data
-- validation-first data engineering mindset
+For a fast review, open these files first:
 
-## Reviewer Notes (Meeting Ready)
+1. [DAY1/customer_cleaning_pyspark.py](DAY1/customer_cleaning_pyspark.py) for the cleanest standalone PySpark script.
+2. [DAY2/sql_queries_day2.sql](DAY2/sql_queries_day2.sql) and [DAY2/sql_joins_day2.sql](DAY2/sql_joins_day2.sql) for SQL reporting and relationships.
+3. [DAY3/sql_window_functions.sql](DAY3/sql_window_functions.sql) for ranking practice.
+4. [DAY4/day4_real_data.ipynb](DAY4/day4_real_data.ipynb) for real reconciliation logic.
+5. [DAY6/day6_advanced_data.ipynb](DAY6/day6_advanced_data.ipynb) for the broadest end-to-end pipeline.
 
-- Each Day folder now has a dedicated README documenting objective, inputs, transformations, and outcomes.
-- All documentation is mapped directly to executable evidence files (`.sql`, `.py`, `.ipynb`, `.csv`).
-- Week 1 can be reviewed independently as a complete proof package of practical data engineering progress.
+## 👤 Author
+
+**Vivek Sadhu**
+
+Data Engineering Trainee
